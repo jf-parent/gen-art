@@ -6,6 +6,6 @@
 (q/defsketch example
   :title "Art War"
   :setup dynamic/setup
-  :draw dynamic/draw1
+  :draw dynamic/draw
   :middleware [m/pause-on-error]
-  :size [1200 1200])
+  :size [1280 720])

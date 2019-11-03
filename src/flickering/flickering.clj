@@ -1,12 +1,12 @@
-(ns quil-workflow.dynamic
-  (:require [quil.core :as q]))
+(ns flickering.flickering
+  (:require [quil.middleware :as m]
+            [quil.core :as q :include-macros true]))
 
-;; https://github.com/quil/quil/wiki/Dynamic-Workflow-%28for-REPL%29
-
-;; (use 'quil-workflow.core)
-;; (use :reload 'quil-workflow.dynamic)
+;; lein run -m flickering.flickering <full-image-path>
+(def img-path (atom nil))
 
 (defn setup []
+  (println @img-path)
   (q/smooth)
   (q/stroke 0)
   (q/no-stroke)
@@ -14,7 +14,9 @@
   (q/background 255)
   (def size (atom 5))
   (def init (atom 0))
-  (q/set-state! :image (q/load-image "/Users/jean-francoisparent/Documents/PROG/LISP/gen-art/src/quil_workflow/images/image_3.jpg")))
+  (q/set-state! :image (q/load-image @img-path))
+  (q/resize-sketch (. (q/state :image) width) (. (q/state :image) height)))
+
 
 (defn draw []
   (when (= @init 0)
@@ -47,3 +49,13 @@
               (q/fill (q/color (+ (q/red pixel) 5) (+ (q/green pixel) 5) (+ (q/blue pixel) 5)))
               (q/fill (q/color (- (q/red pixel) 5) (- (q/green pixel) 5) (- (q/blue pixel) 5))))
             (q/rect (* @size x) (* @size y) @size @size)))))))
+
+
+
+(defn -main [& args]
+  (reset! img-path (first args))
+  (q/defsketch flickering
+    :title "Flickering"
+    :setup setup
+    :draw draw
+    :size [100 100]))
