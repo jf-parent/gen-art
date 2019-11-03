@@ -5,6 +5,7 @@ pom.xml.asc
 *.jpg
 *.png
 *.log
+*.xcf
 /lib/
 /classes/
 /target/
