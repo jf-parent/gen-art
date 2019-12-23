@@ -3,6 +3,8 @@ pom.xml.asc
 *.jar
 *.class
 *.jpg
+*.jpeg
+*.mp4
 *.png
 *.log
 *.xcf
