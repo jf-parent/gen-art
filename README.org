@@ -1,0 +1,9 @@
+* gen-art (Generative Art for Boudoir Music Video)
+* Installation
+#+BEGIN_SRC bash
+lein install
+#+END_SRC
+* Execution
+#+BEGIN_SRC
+lein run -m percolation.percolation_06
+#+END_SRC
