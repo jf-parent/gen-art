@@ -1,5 +1,6 @@
 (ns stencil.stencil-01
   (:require [quil.middleware :as m]
+            [me.raynes.fs :as fs]
             [quil.core :as q]))
 
 (defn setup []
@@ -9,7 +10,7 @@
   (q/frame-rate 30)
   (q/background 255)
   (def init (atom 0))
-  (q/set-state! :stencil-image (q/load-image "/Users/jean-francoisparent/Documents/PROG/LISP/war-art/src/stencil/images/stencil-01.jpg")))
+  (q/set-state! :stencil-image (q/load-image (str fs/*cwd* "/src/stencil/images/stencil-01.jpg"))))
 
 (defn draw []
   (when (= @init 1)
