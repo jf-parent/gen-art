@@ -1,2 +1,2 @@
 * Percolation 02
-** [[file:../gifs/percolation_02.gif]]
+** [file:../../gifs/percolation_02.gif]]
