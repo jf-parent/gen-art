@@ -1,2 +1,12 @@
+* Percolation 01
+** [[file:../../gifs/percolation_01.gif]]
 * Percolation 02
 ** [[file:../../gifs/percolation_02.gif]]
+* Percolation 03
+** [[file:../../gifs/percolation_03.gif]]
+* Percolation 04
+** [[file:../../gifs/percolation_04.gif]]
+* Percolation 05
+** [[file:../../gifs/percolation_05.gif]]
+* Percolation 06
+** [[file:../../gifs/percolation_06.gif]]
