@@ -1,5 +1,6 @@
 (ns quil-workflow.dynamic
   (:require [quil.core :as q]
+            [clojure.string :as cs]
             [me.raynes.fs :as fs]))
 
 ;; https://github.com/quil/quil/wiki/Dynamic-Workflow-%28for-REPL%29
@@ -9,15 +10,46 @@
 
 (set! *warn-on-reflection* true)
 
+(def current-formula (atom ""))
+(def current-x (atom 100))
+(def current-y (atom 100))
+
+(defn l-system-derive [formula rules steps]
+  (loop [f formula step steps]
+    (if (<= step 0)
+      f
+      (recur (cs/join #"" (mapcat #((keyword %) rules) (cs/split f #""))) (dec step)))))
+
 (defn random-color [nb]
   (take nb (repeatedly (fn [] [(q/random 255) (q/random 255) (q/random 255)]))))
 
-(defn setup [])
+(defn setup []
+  (q/background 255 255 255)
+  (q/frame-rate 1)
+  (reset! current-formula (cs/split (l-system-derive "X" {:X "-YF+XFX+FY-" :Y "+XF-YFY-FX+"} 3) #""))
+  (println @current-formula))
 
-(defn draw [])
+
+(defn draw []
+  (let [c (first @current-formula) angle 90 x @current-x y @current-y length 10]
+    (when (seq c)
+      (reset! current-formula (rest @current-formula))
+      (when (= c "F")
+        (reset! current-x (+ x length))
+        (q/line x y @current-x y)
+        (println "forward!"))
+      (when (= c "+")
+        (reset! current-y (+ y length))
+        (q/line x y x @current-y)
+        (println "Turn angle right!"))
+      (when (= c "-")
+        (reset! current-y (- y length))
+        (q/line x y x @current-y)
+        (println "Turn angle left!"))
+      (println c x y))))
 
 (q/defsketch Prototyping
-  :size [1800 1000]
+  :size [500 500]
   :title "Prototyping"
   :setup setup
   :draw draw)
