@@ -4,7 +4,7 @@
 
 (defn setup []
   (q/background 0 0 0)
-  (q/frame-rate 60)
+  (q/frame-rate 30)
   (q/set-state! :images (fs/list-dir (str fs/*cwd* "/src/blending/images"))))
 
 

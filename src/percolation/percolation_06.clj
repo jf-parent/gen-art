@@ -7,7 +7,7 @@
   (q/no-stroke)
   (q/frame-rate 120)
   (q/background 255)
-  (def size (atom 10))
+  (def size (atom 100))
   (def init (atom 0))
   (def colors [
                [(q/random 255) (q/random 255) (q/random 255)]
@@ -44,6 +44,6 @@
   :setup setup
   :draw draw
   :middleware [m/pause-on-error]
-  :size [1200 1200])
+  :size [3800 1500])
 
 (defn -main [& args])
